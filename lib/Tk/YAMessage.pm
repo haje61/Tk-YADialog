@@ -25,7 +25,7 @@ Construct Tk::Widget 'YAMessage';
 
 =head1 DESCRIPTION
 
-Provides a basic message box. Less noisy than Tk::MessageBox.
+Provides a basic, less noisy, replacement for L<Tk::MessageBox>.
 Inherits L<Tk::YADialog>.
 
 =head1 B<CONFIG VARIABLES>
@@ -35,10 +35,12 @@ Inherits L<Tk::YADialog>.
 =item Switch: B<-image>
 
 Default value none.
+Specify the image to be shown. Must be a Tk::Image object.
 
 =item Switch: B<-text>
 
 Default value none.
+Specify the text to be shown.
 
 =back
 
@@ -78,7 +80,7 @@ Unknown. If you find any, please contact the author.
 
 =over 4
 
-=item L<Tk::YADialog;
+=item L<Tk::YADialog>
 
 =back
 

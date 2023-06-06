@@ -29,9 +29,8 @@ Construct Tk::Widget 'YADialog';
 
 =head1 DESCRIPTION
 
-Provides a basic dialog. Less noisy than Tk::Dialog.
+Provides a basic, less noisy, replacement for L<Tk::Dialog>.
 Inherits L<Tk::Toplevel>.
-
 
 =head1 B<CONFIG VARIABLES>
 
@@ -40,6 +39,7 @@ Inherits L<Tk::Toplevel>.
 =item Switch: B<-buttons>
 
 Default value ['Close'].
+Specify a list of buttons to be shown.
 
 =item Switch: B<-command>
 
@@ -48,11 +48,14 @@ Callback, is called when a button is pressed.
 =item Switch: B<-defaultbutton>
 
 Default value not defined.
+Specify which button has the focus on popup.
 
 =item Switch: B<-padding>
 
 Horizontal and vertical padding for the buttons.
 Default value 20.
+
+Only available at create time.
 
 =back
 
@@ -126,13 +129,13 @@ sub CancelDialog {
 	$_[0]->Pressed('*Cancel*');
 }
 
-=item Switch: B<Get>
+=item Switch: B<get>
 
 Returns the button that was pressed.
 
 =cut
 
-sub Get { return $_[0]->{PRESSED} }
+sub get { return $_[0]->{PRESSED} }
 
 sub Pressed {
 	my $self = shift;
@@ -143,13 +146,20 @@ sub Pressed {
 	return $self->{PRESSED}
 }
 
-=item Switch: B<Show>
+=item Switch: B<show>
 
 Pops up the dialog.
+you can provide options for the Popup method. See L<Tk::Popup>.
+B<Show> (capital S) also works for compatibility with L<Tk::Dialog>.
 
 =cut
 
 sub Show {
+	my $self = shift;
+	return $elf->show
+}
+
+sub show {
 	my $self = shift;
 	my ($grab) = @_;
 	my $old_focus = $self->focusSave;
@@ -180,7 +190,6 @@ sub Show {
 
 sub Wait {
 	my $self = shift;
-	$self->Callback(-showcommand => $self);
 	$self->waitVariable(\$self->{PRESSED});
 	$self->grabRelease if Tk::Exists($self);
 	$self->withdraw if Tk::Exists($self);

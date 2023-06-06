@@ -15,6 +15,7 @@ my $dialog;
 if (defined $app) {
 	$dialog = $app->YADialog(
 		-buttons => ['Close'],
+		-defaultbutton => 'Close',
 	);
 	$dialog->Label(-text => "This is a dialog")->pack(-fill => 'x',-padx => 10, -pady => 10);
 }
