@@ -9,7 +9,7 @@ Tk::YADialog - Yet another dialog
 use strict;
 use warnings;
 use vars qw($VERSION);
-$VERSION = '0.01';
+$VERSION = '0.02';
 
 use Tk;
 use base qw(Tk::Derived Tk::Toplevel);
@@ -156,7 +156,7 @@ B<Show> (capital S) also works for compatibility with L<Tk::Dialog>.
 
 sub Show {
 	my $self = shift;
-	return $elf->show
+	return $self->show
 }
 
 sub show {
